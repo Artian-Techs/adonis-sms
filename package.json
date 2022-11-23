@@ -1,0 +1,178 @@
+{
+  "name": "@melchyore/adonis-sms",
+  "version": "0.0.0",
+  "description": "Send SMS from AdonisJS using some known services",
+  "main": "build/providers/SMSProvider.js",
+  "keywords": [
+    "sms",
+    "adonisjs",
+    "nodejs",
+    "node.js",
+    "vonage",
+    "nexmo",
+    "twilio",
+    "d7",
+    "d7networks",
+    "sns",
+    "amazon",
+    "aws",
+    "notification",
+    "service",
+    "telesign",
+    "infobip",
+    "api",
+    "sdk",
+    "rest",
+    "gateway",
+    "unicode",
+    "message",
+    "text",
+    "phone",
+    "number",
+    "mobile",
+    "sender",
+    "receiver",
+    "recipient"
+  ],
+  "scripts": {
+    "mrm": "mrm --preset=@adonisjs/mrm-preset",
+    "pretest": "npm run lint",
+    "test": "node -r @adonisjs/require-ts/build/register bin/test",
+    "clean": "del-cli build",
+    "copyfiles": "copyfiles \"templates/**/*.txt\" \"instructions.md\" build",
+    "compile": "npm run lint && npm run clean && tsc",
+    "build": "npm run compile",
+    "prepublishOnly": "npm run build",
+    "lint": "eslint . --ext=.ts",
+    "format": "prettier --write .",
+    "commit": "git-cz",
+    "release": "np --message=\"chore(release): %s\"",
+    "version": "npm run build",
+    "sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json Melchyore/adonis-sms"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Melchyore/adonis-sms.git"
+  },
+  "author": {
+    "name": "Oussama Benhamed",
+    "email": "b.oussama@corposmart.dz"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Melchyore/adonis-sms/issues"
+  },
+  "homepage": "https://github.com/Melchyore/adonis-sms#readme",
+  "devDependencies": {
+    "@adonisjs/core": "^5.8.8",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/repl": "^3.1.11",
+    "@adonisjs/require-ts": "^2.0.13",
+    "@adonisjs/sink": "^5.4.1",
+    "@japa/core": "^7.3.0",
+    "@japa/expect": "^2.0.1",
+    "@japa/preset-adonis": "^1.2.0",
+    "@japa/run-failed-tests": "^1.1.0",
+    "@japa/runner": "^2.2.2",
+    "@japa/spec-reporter": "^1.3.2",
+    "@poppinss/dev-utils": "^2.0.3",
+    "@types/node": "^18.11.3",
+    "aws-sdk": "^2.1238.0",
+    "commitizen": "^4.2.5",
+    "copyfiles": "^2.4.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-adonis": "^2.1.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "github-label-sync": "^2.2.0",
+    "husky": "^8.0.1",
+    "import-fresh": "^3.3.0",
+    "mrm": "^4.1.13",
+    "np": "^7.6.2",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.4"
+  },
+  "mrmConfig": {
+    "core": false,
+    "license": "MIT",
+    "services": [
+      "github-actions"
+    ],
+    "minNodeVersion": "16.13.1",
+    "probotApps": [
+      "stale",
+      "lock"
+    ],
+    "runGhActionsOnWindows": false
+  },
+  "files": [
+    "build/adonis-typings",
+    "build/providers",
+    "build/templates",
+    "build/commands",
+    "build/src",
+    "build/instructions.js",
+    "build/instructions.md"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptPackage",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "np": {
+    "contents": ".",
+    "anyBranch": false
+  },
+  "dependencies": {
+    "@infobip-api/sdk": "^0.1.0",
+    "@vonage/server-sdk": "^2.11.2",
+    "fastq": "^1.13.0",
+    "node-fetch": "^2.6.7",
+    "smsapi": "^2.0.4",
+    "telesignsdk": "^2.2.1",
+    "twilio": "^3.83.0"
+  },
+  "adonisjs": {
+    "instructions": "./build/instructions.js",
+    "instructionsMd": "./build/instructions.md",
+    "types": "@melchyore/adonis-sms",
+    "providers": [
+      "@melchyore/adonis-sms"
+    ],
+    "commands": [
+      "@melchyore/adonis-sms/build/commands"
+    ]
+  }
+}
