@@ -27,10 +27,10 @@ export class InfobipDriver extends BaseDriver {
   }
 
   /**
-   * Lazily creates the Infobip client. The SDK is an optional peer
+   * Lazily creates the Infobip SDK instance. The SDK is an optional peer
    * dependency, hence it is imported on demand
    */
-  protected async getClient() {
+  protected async getSdk() {
     if (this.#infobip) {
       return this.#infobip
     }
@@ -38,7 +38,7 @@ export class InfobipDriver extends BaseDriver {
     const { Infobip } = await import('@infobip-api/sdk')
 
     /**
-     * The SDK rejects a client without an "authType", so it is inferred from
+     * The SDK rejects an instance without an "authType", so it is inferred from
      * the credentials when the config does not spell it out
      */
     const authType =
@@ -120,7 +120,7 @@ export class InfobipDriver extends BaseDriver {
    * onto every entry rather than being dropped
    */
   async #sendSms(sms: any): Promise<SmsResponse<InfobipMessageResponse>[]> {
-    const infobip = await this.getClient()
+    const infobip = await this.getSdk()
     const response = await infobip.channels.sms.send({ messages: [sms] })
     const data: InfobipResponse = response.data
 

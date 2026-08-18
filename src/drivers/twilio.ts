@@ -39,10 +39,10 @@ export class TwilioDriver extends BaseDriver {
   }
 
   /**
-   * Lazily creates the Twilio client. The SDK is an optional peer
+   * Lazily creates the Twilio SDK instance. The SDK is an optional peer
    * dependency, hence it is imported on demand
    */
-  protected async getClient(): Promise<Twilio> {
+  protected async getSdk(): Promise<Twilio> {
     if (this.#twilio) {
       return this.#twilio
     }
@@ -78,7 +78,7 @@ export class TwilioDriver extends BaseDriver {
     { from, to, message }: MessageNode,
     runtimeOptions?: TwilioRuntimeOptions
   ): Promise<SmsResponse<TwilioResponse>> {
-    const twilio = await this.getClient()
+    const twilio = await this.getSdk()
     const options = this.#prepare(runtimeOptions)
     const response = await twilio.messages.create({ ...options, body: message, to, from })
 

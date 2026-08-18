@@ -1,16 +1,27 @@
 {{{
   exports({ to: app.configPath('sms.ts') })
 }}}
-import env from '#start/env'
+{{#if clients.length}}import env from '#start/env'
 import { defineConfig, drivers } from '@artian-techs/adonis-sms'
-import type { InferSmsClients } from '@artian-techs/adonis-sms/types'
+{{#else}}// Uncomment both to use one of the built-in drivers
+// import env from '#start/env'
+// import { drivers } from '@artian-techs/adonis-sms'
+import { defineConfig } from '@artian-techs/adonis-sms'
+{{/if}}import type { InferSmsClients } from '@artian-techs/adonis-sms/types'
 
 const smsConfig = defineConfig({
-  /**
+  {{#if clients.length}}/**
    * The client used to send messages when no client is explicitly
-   * selected through "sms.use()"
+   * selected through "sms.use()". It is optional: without it, every call
+   * must name its client, as in "sms.use('twilio')"
    */
   default: '{{ clients[0] }}',
+{{#else}}/**
+   * Uncomment once a client is declared below, to send through it without
+   * naming it on every call
+   */
+  // default: 'myProvider',
+{{/if}}
 
   /**
    * Global sender ID (phone number or alphanumeric name). Used by every
@@ -30,7 +41,18 @@ const smsConfig = defineConfig({
    * For example: the Twilio driver can be used to define different clients
    * for transactional and promotional messages
    */
-  clients: { {{#if clients.includes('twilio')}}
+  clients: { {{#if !clients.length}}
+    /**
+     * No service was selected during setup. Declare your own driver here:
+     *
+     *   import { MyProviderDriver } from '../app/sms/drivers/my_provider.js'
+     *
+     *   myProvider: () => new MyProviderDriver({ apiKey: env.get('MY_API_KEY') }),
+     *
+     * A driver is any object implementing SmsDriverContract. See
+     * https://github.com/Artian-Techs/adonis-sms#writing-a-custom-driver
+     */
+    {{/if}}{{#if clients.includes('twilio')}}
     twilio: drivers.twilio({
       accountSid: env.get('TWILIO_ACCOUNT_SID'),
       authToken: env.get('TWILIO_AUTH_TOKEN'),

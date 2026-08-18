@@ -28,10 +28,10 @@ export class VonageDriver extends BaseDriver {
   }
 
   /**
-   * Lazily creates the Vonage client. The SDK is an optional peer
+   * Lazily creates the Vonage SDK instance. The SDK is an optional peer
    * dependency, hence it is imported on demand
    */
-  protected async getClient() {
+  protected async getSdk() {
     if (this.#vonage) {
       return this.#vonage
     }
@@ -87,7 +87,7 @@ export class VonageDriver extends BaseDriver {
     text: string,
     runtimeOptions?: VonageRuntimeOptions
   ): Promise<SmsResponse<VonageResponse>> {
-    const vonage = await this.getClient()
+    const vonage = await this.getSdk()
 
     const payload = new ObjectBuilder<Record<string, any>, true>({}, true)
       .add('channel', 'sms')

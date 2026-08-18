@@ -43,10 +43,10 @@ export class SNSDriver extends BaseDriver {
   }
 
   /**
-   * Lazily creates the SNS client. The SDK is an optional peer
+   * Lazily creates the SNS SDK instance. The SDK is an optional peer
    * dependency, hence it is imported on demand
    */
-  protected async getClient() {
+  protected async getSdk() {
     if (this.#sns) {
       return this.#sns
     }
@@ -72,7 +72,7 @@ export class SNSDriver extends BaseDriver {
     { from, to, message }: MessageNode,
     runtimeOptions?: SNSRuntimeOptions
   ): Promise<SmsResponse<SNSResponse>> {
-    const sns = await this.getClient()
+    const sns = await this.getSdk()
     await this.#applyAccountAttributes()
 
     const { PublishCommand } = await import('@aws-sdk/client-sns')
@@ -178,7 +178,7 @@ export class SNSDriver extends BaseDriver {
       return
     }
 
-    const sns = await this.getClient()
+    const sns = await this.getSdk()
     const { SetSMSAttributesCommand } = await import('@aws-sdk/client-sns')
 
     await sns.send(new SetSMSAttributesCommand({ attributes }))

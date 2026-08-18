@@ -17,8 +17,8 @@ import type { BaseDriver } from '../../src/drivers/base_driver.js'
 | "X is not a constructor" TypeError.
 |
 | The Twilio driver shipped exactly that bug: it type-checked, the whole test
-| suite passed, and it was broken for every user. These tests build the client
-| of each driver with dummy credentials. SDK constructors perform no I/O, so
+| suite passed, and it was broken for every user. These tests build the SDK
+| instance of each driver with dummy credentials. SDK constructors perform no I/O, so
 | this stays offline.
 |
 */
@@ -34,22 +34,22 @@ const factories: Record<string, () => BaseDriver> = {
 const names = Object.keys(factories)
 
 test.group('Driver SDK instantiation', () => {
-  test('build the {$self} client without hitting the network')
+  test('build the {$self} SDK instance without hitting the network')
     .with(names)
     .run(async ({ assert }, name) => {
       const driver = factories[name]() as any
-      const client = await driver.getClient()
+      const sdk = await driver.getSdk()
 
-      assert.isObject(client, `the ${name} SDK did not yield a client instance`)
+      assert.isObject(sdk, `the ${name} SDK did not yield an instance`)
     })
 
-  test('cache the {$self} client across calls')
+  test('cache the {$self} SDK instance across calls')
     .with(names)
     .run(async ({ assert }, name) => {
       const driver = factories[name]() as any
-      const client = await driver.getClient()
-      const again = await driver.getClient()
+      const sdk = await driver.getSdk()
+      const again = await driver.getSdk()
 
-      assert.strictEqual(client, again)
+      assert.strictEqual(sdk, again)
     })
 })
