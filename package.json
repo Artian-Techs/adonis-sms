@@ -53,7 +53,7 @@
   ],
   "scripts": {
     "clean": "del-cli build",
-    "copy:templates": "copyfiles \"stubs/**/**/*.stub\" build",
+    "copy:templates": "copyfiles --up=1 \"stubs/**/**/*.stub\" build",
     "index:commands": "adonis-kit index build/commands",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
@@ -62,7 +62,7 @@
     "pretest": "npm run lint",
     "test": "npm run quick:test",
     "precompile": "npm run lint && npm run clean",
-    "compile": "tsc",
+    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration",
     "postcompile": "npm run copy:templates && npm run index:commands",
     "build": "npm run compile",
     "prepublishOnly": "npm run build",
@@ -128,6 +128,7 @@
     "np": "^10.0.2",
     "prettier": "^3.2.5",
     "ts-node": "^10.9.2",
+    "tsup": "^8.5.1",
     "twilio": "^5.0.0",
     "typescript": "^5.4.3"
   },
@@ -141,5 +142,27 @@
     "tag": "latest",
     "branch": "main",
     "anyBranch": false
+  },
+  "tsup": {
+    "entry": [
+      "index.ts",
+      "configure.ts",
+      "stubs/main.ts",
+      "src/types.ts",
+      "services/main.ts",
+      "providers/sms_provider.ts",
+      "commands/make_sms.ts",
+      "src/drivers/sns.ts",
+      "src/drivers/twilio.ts",
+      "src/drivers/vonage.ts",
+      "src/drivers/infobip.ts",
+      "src/messengers/memory_queue.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": true,
+    "target": "esnext"
   }
 }
