@@ -1,27 +1,32 @@
 {{{
   exports({ to: app.configPath('sms.ts') })
 }}}
-{{#if clients.length}}import env from '#start/env'
+{{#if clients.length}}
+import env from '#start/env'
 import { defineConfig, drivers } from '@artian-techs/adonis-sms'
-{{#else}}// Uncomment both to use one of the built-in drivers
+{{#else}}
+// Uncomment both to use one of the built-in drivers
 // import env from '#start/env'
 // import { drivers } from '@artian-techs/adonis-sms'
 import { defineConfig } from '@artian-techs/adonis-sms'
-{{/if}}import type { InferSmsClients } from '@artian-techs/adonis-sms/types'
+{{/if}}
+import type { InferSmsClients } from '@artian-techs/adonis-sms/types'
 
 const smsConfig = defineConfig({
-  {{#if clients.length}}/**
+  {{#if clients.length}}
+  /**
    * The client used to send messages when no client is explicitly
    * selected through "sms.use()". It is optional: without it, every call
    * must name its client, as in "sms.use('twilio')"
    */
   default: '{{ clients[0] }}',
-{{#else}}/**
+  {{#else}}
+  /**
    * Uncomment once a client is declared below, to send through it without
    * naming it on every call
    */
   // default: 'myProvider',
-{{/if}}
+  {{/if}}
 
   /**
    * Global sender ID (phone number or alphanumeric name). Used by every
