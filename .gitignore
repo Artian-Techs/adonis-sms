@@ -17,3 +17,6 @@ shrinkwrap.yaml
 *.tgz
 *.lock
 *-lock.yaml
+# The lockfile is committed so CI installs are reproducible and
+# actions/setup-node can cache the pnpm store
+!pnpm-lock.yaml
