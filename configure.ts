@@ -43,17 +43,16 @@ export async function configure(command: Configure) {
    */
   if (!selectedDrivers) {
     selectedDrivers = await command.prompt.multiple(
-      'Select the sms services you want to use',
-      KNOWN_DRIVERS,
-      {
-        validate(values) {
-          return !values || !values.length ? 'Please select one or more drivers' : true
-        },
-      }
+      'Select the sms services you want to use (none, to write your own driver)',
+      KNOWN_DRIVERS
     )
   }
 
-  const clients = typeof selectedDrivers === 'string' ? [selectedDrivers] : selectedDrivers!
+  /**
+   * Selecting nothing is a valid answer: the config file is then published
+   * with an empty "clients" object, ready for a custom driver
+   */
+  const clients = typeof selectedDrivers === 'string' ? [selectedDrivers] : (selectedDrivers ?? [])
 
   const unknownDriver = clients.find((driver) => !KNOWN_DRIVERS.includes(driver))
   if (unknownDriver) {
