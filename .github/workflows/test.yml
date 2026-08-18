@@ -6,9 +6,15 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         node-version:
           - 24.x
+        # The package supports both major versions of the framework, so both
+        # are exercised rather than promised
+        adonis-version:
+          - 6
+          - 7
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v3
@@ -21,5 +27,7 @@ jobs:
           cache: pnpm
       - name: Install
         run: pnpm install
+      - name: Use AdonisJS ${{ matrix.adonis-version }}
+        run: pnpm add -D @adonisjs/core@${{ matrix.adonis-version }}
       - name: Run tests
         run: pnpm test

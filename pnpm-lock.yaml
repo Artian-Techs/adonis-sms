@@ -22,13 +22,13 @@ importers:
         specifier: ^6.21.0
         version: 6.21.0(@adonisjs/assembler@7.8.2(typescript@5.9.3))
       '@adonisjs/eslint-config':
-        specifier: ^2.0.0
+        specifier: ^2.1.2
         version: 2.1.2(eslint@9.39.5)(prettier@3.9.6)(typescript@5.9.3)
       '@adonisjs/prettier-config':
-        specifier: ^1.4.0
+        specifier: ^1.5.0
         version: 1.5.0(prettier@3.9.6)
       '@adonisjs/tsconfig':
-        specifier: ^1.4.0
+        specifier: ^1.4.1
         version: 1.4.1
       '@aws-sdk/client-sns':
         specifier: ^3.540.0

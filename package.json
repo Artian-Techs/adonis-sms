@@ -87,7 +87,7 @@
     "fastq": "^1.17.1"
   },
   "peerDependencies": {
-    "@adonisjs/core": "^6.2.0",
+    "@adonisjs/core": "^6.2.0 || ^7.0.0",
     "@aws-sdk/client-sns": "^3.540.0",
     "@infobip-api/sdk": "^0.3.0",
     "@vonage/server-sdk": "^3.15.0",
@@ -110,9 +110,9 @@
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/core": "^6.21.0",
-    "@adonisjs/eslint-config": "^2.0.0",
-    "@adonisjs/prettier-config": "^1.4.0",
-    "@adonisjs/tsconfig": "^1.4.0",
+    "@adonisjs/eslint-config": "^2.1.2",
+    "@adonisjs/prettier-config": "^1.5.0",
+    "@adonisjs/tsconfig": "^1.4.1",
     "@aws-sdk/client-sns": "^3.540.0",
     "@infobip-api/sdk": "^0.3.2",
     "@japa/assert": "^3.0.0",
@@ -134,7 +134,8 @@
   },
   "publishConfig": {
     "access": "public",
-    "tag": "latest"
+    "tag": "latest",
+    "registry": "https://registry.npmjs.org"
   },
   "prettier": "@adonisjs/prettier-config",
   "np": {

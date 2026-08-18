@@ -6,7 +6,11 @@
 
 Ships with drivers for **Twilio**, **Vonage** (Messages API), **Amazon SNS** and **Infobip**, and lets you plug in your own.
 
-> **AdonisJS v6 only.** For AdonisJS v5, use the `0.x` releases of this package.
+> **Requires AdonisJS 6 or 7, on Node 24 or above.**
+>
+> Note that AdonisJS 6 itself supports Node 20, while this package does not.
+> Running it on an AdonisJS 6 application therefore means running that
+> application on Node 24.
 
 ## Table of contents
 
