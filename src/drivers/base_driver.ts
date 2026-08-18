@@ -6,7 +6,7 @@ import type {
   BulkMessageNode,
 } from '../types.js'
 
-import { SmsResponse } from '../sms_response.js'
+import { type SmsResponse } from '../sms_response.js'
 import { DEFAULT_CONCURRENCY, mapWithConcurrency } from '../utils.js'
 
 export abstract class BaseDriver implements SmsDriverContract {

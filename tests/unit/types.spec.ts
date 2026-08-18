@@ -1,11 +1,11 @@
 import { test } from '@japa/runner'
 
-import { SmsClient } from '../../src/sms_client.js'
+import { type SmsClient } from '../../src/sms_client.js'
 import { SmsManager } from '../../src/sms_manager.js'
 import { defineConfig, drivers } from '../../src/define_config.js'
-import { InfobipDriver } from '../../src/drivers/infobip.js'
-import { TwilioDriver } from '../../src/drivers/twilio.js'
-import { SmsResponse } from '../../src/sms_response.js'
+import { type InfobipDriver } from '../../src/drivers/infobip.js'
+import { type TwilioDriver } from '../../src/drivers/twilio.js'
+import { type SmsResponse } from '../../src/sms_response.js'
 import type {
   InfobipMessageResponse,
   InfobipRuntimeOptions,
@@ -16,7 +16,7 @@ import type {
   TwilioRuntimeOptions,
   ValuesOf,
 } from '../../src/types.js'
-import { ContentType, InfobipAuthType, SNSDefaultSmsType } from '../../src/enums.js'
+import { type ContentType, type InfobipAuthType, type SNSDefaultSmsType } from '../../src/enums.js'
 import { createEmitter } from '../helpers.js'
 
 const smsConfig = defineConfig({
