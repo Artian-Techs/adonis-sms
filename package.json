@@ -1,6 +1,6 @@
 {
   "name": "@artian-techs/adonis-sms",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Send SMS from AdonisJS using some known services",
   "engines": {
     "node": ">=24.0.0"
