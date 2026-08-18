@@ -1,0 +1,16 @@
+{{{
+  exports({ to: app.makePath('app/sms', entity.path, smsFileName) })
+}}}
+import { BaseSms } from '@artian-techs/adonis-sms'
+
+export default class {{ smsName }} extends BaseSms {
+  from = ''
+
+  /**
+   * The "prepare" method is called automatically when the sms
+   * is sent or queued.
+   */
+  prepare() {
+    this.message.to('+11111111111').message('This is the SMS message')
+  }
+}

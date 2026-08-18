@@ -1,8 +1,8 @@
 build
+coverage
 docs
+stubs
 *.md
-config.json
-.eslintrc.json
+*.stub
 package.json
-*.html
-*.txt
+pnpm-lock.yaml
